@@ -88,7 +88,7 @@ var point = L.geoJson(null, {
         if (feature.properties.Route == 7) {
             layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Chonburi_7.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
         }
-        if (feature.properties.Route == 11) {
+        if (feature.properties.Route == 11 || feature.properties.Province == 'ลำปาง') {
             layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Lampang_11_499.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
         }
         if (feature.properties.Route == 2243) {
@@ -97,8 +97,44 @@ var point = L.geoJson(null, {
         if (feature.properties.Route == 2247) {
             layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Lopburi_2247_1+500.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
         }
+        if (feature.properties.Route == 108) {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Maehongson_108_178-179.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 302) {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Nonthaburi_302.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 11 || feature.properties.Province == 'แพร่') {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Phrae_11_354+900.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 1022) {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Phrae_1022.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 1124) {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Phrae_1124_30+658.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 1217) {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Phrae_1217_2+650.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 34) {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Samutprakan_34_29+30.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
         if (feature.properties.Route == 21) {
             layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Saraburi_21_7+700.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Name == 'เขตอุทยานแห่งชาติดอยสุเทพ-ปุย') {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Suthep.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 12 || feature.properties.Km == '33+000 - 34+000') {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Tak_12_33-34.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 12 || feature.properties.Km == '64+500 - 67+000') {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Tak_12_64+500.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 1090 || feature.properties.Km == '69+100') {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Tak_1090_69+100.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
+        if (feature.properties.Route == 1090 || feature.properties.Km == '163+100 - 163+175') {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Tak_1090_163+100.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
         }
     }
 }).addTo(map);
