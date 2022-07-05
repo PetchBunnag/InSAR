@@ -136,6 +136,9 @@ var point = L.geoJson(null, {
         else if (feature.properties.Route == 1090 || feature.properties.Km == '163+100 - 163+175') {
             layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Tak_1090_163+100.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
         }
+        else if (feature.properties.Route == 3050) {
+            layer.bindPopup(popupContent + "<a href='assets/pdf/Stories_report/Stories_Nakhonnayo_3050.pdf' target='_blank' style='font-size: 16px; padding: 5px;'>รายงาน</a>")
+        }
     }
 }).addTo(map);
 
