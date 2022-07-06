@@ -238,7 +238,7 @@ var SBASsource = L.WMS.Source.extend({
                 // Define Layout
                 var layout = {
                     xaxis: { title: "Year" },
-                    yaxis: { title: "Cumulative Displacement (m)" },
+                    yaxis: { title: "Cumulative Displacement (m)", 'zeroline': false },
                     title: "ตำบล: " + resp.data.tambon + "<br>" + "Avg.Velo.: " + (resp.data.velo_mmy).toFixed(3) + " mm/year"
                 };
 
