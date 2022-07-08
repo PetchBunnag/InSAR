@@ -45,6 +45,20 @@ var road = L.geoJson(null, {
     }
 });
 
+// $.getJSON('assets/geojson/ref_province.geojson', function (data) {
+//     province.addData(data);
+// });
+
+// var province = L.geoJson(null, {
+//     onEachFeature: function (feature, layer) {
+//         var popupContent = "<table>" +
+//             "<tr>" + "<td>" + "<b>" + "จังหวัด" + "</b>" + "</td>" + "<td>" + feature.properties.name_th + "</td>" + "</tr>" +
+//             "<tr>" + "<td>" + "<b>" + "ภาค" + "</b>" + "</td>" + "<td>" + feature.properties.region_name_th + "</td>" + "</tr>" +
+//             "</table>"
+//         layer.bindPopup(popupContent);
+//     }
+// });
+
 // var point = L.Geoserver.wfs("https://infraplus-ru.org/geoserver/wfs", {
 //     layers: "insar:20site",
 //     onEachFeature: function (feature, layer) {
@@ -201,52 +215,62 @@ var SBASsource = L.WMS.Source.extend({
                 // console.log(resp.data.date);
                 // console.log(resp.data.CumDispl_m_);
 
-                // new Chart("myChart", {
-                //     type: "line",
-                //     data: {
-                //         labels: resp.data.date,
-                //         datasets: [{
-                //             fill: false,
-                //             pointRadius: 1,
-                //             borderColor: "rgba(55, 128, 191, 0.5)",
-                //             data: resp.data.CumDispl_m_
-                //         }]
+                new Chart("myChart", {
+                    type: "line",
+                    data: {
+                        labels: resp.data.date,
+                        datasets: [{
+                            fill: false,
+                            pointRadius: 2,
+                            pointBackgroundColor: "red",
+                            borderColor: "transparent",
+                            data: resp.data.CumDispl_m_,
+                            trendlineLinear: {
+                                style: "rgba(255,105,180, .8)",
+                                lineStyle: "dotted|solid",
+                                width: 2
+                            }
+                        }]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: scene,
+                            fontSize: 14
+                        }
+                    }
+                });
+
+                // // Define Data
+                // var data = [{
+                //     x: resp.data.date,
+                //     y: resp.data.CumDispl_m_,
+                //     mode: "markers"
+                // }];
+
+                // // var total = 0;
+                // // for (var i = 0; i < (resp.data.CumDispl_m_).length; i++) {
+                // //     total += (resp.data.CumDispl_m_)[i];
+                // // }
+                // // var avg = total * 1000 / (resp.data.CumDispl_m_).length;
+
+                // // Define Layout
+                // var layout = {
+                //     xaxis: { title: "Year" },
+                //     yaxis: {
+                //         // range: [-10, 5],
+                //         title: "Cumulative Displacement (m)",
+                //         'zeroline': false
                 //     },
-                //     options: {
-                //         legend: { display: false },
-                //         title: {
-                //             display: true,
-                //             text: scene,
-                //             fontSize: 14
-                //         }
-                //     }
-                // });
+                //     title: "ตำบล: " + resp.data.tambon + "<br>" + "Avg.Velo.: " + (resp.data.velo_mmy).toFixed(3) + " mm/year"
+                // };
 
-                // Define Data
-                var data = [{
-                    x: resp.data.date,
-                    y: resp.data.CumDispl_m_,
-                    mode: "markers"
-                }];
-
-                // var total = 0;
-                // for (var i = 0; i < (resp.data.CumDispl_m_).length; i++) {
-                //     total += (resp.data.CumDispl_m_)[i];
-                // }
-                // var avg = total * 1000 / (resp.data.CumDispl_m_).length;
-
-                // Define Layout
-                var layout = {
-                    xaxis: { title: "Year" },
-                    yaxis: { title: "Cumulative Displacement (m)", 'zeroline': false },
-                    title: "ตำบล: " + resp.data.tambon + "<br>" + "Avg.Velo.: " + (resp.data.velo_mmy).toFixed(3) + " mm/year"
-                };
-
-                // Display using Plotly
-                Plotly.newPlot("myPlot", data, layout);
+                // // Display using Plotly
+                // Plotly.newPlot("myPlot", data, layout);
             })
-        // var info = '<canvas id="myChart" style="width: 350px; height: 250px;"></canvas>';
-        var info = '<div id="myPlot" style="width: 500px; height: 400px; left: 0; top: 0; margin-top: -13.5px; margin-bottom: -13.5px; margin-left: -21px;"></div>'
+        var info = '<canvas id="myChart" style="width: 350px; height: 250px;"></canvas>';
+        // var info = '<div id="myPlot" style="width: 500px; height: 400px; left: 0; top: 0; margin-top: -13.5px; margin-bottom: -13.5px; margin-left: -21px;"></div>'
         this._map.openPopup(info, latlng);
     }
 });
@@ -307,6 +331,7 @@ var groupedOverlays = {
     "ชั้นข้อมูลพื้นฐาน": {
         "จุดเกิดภัยพิบัติ": point,
         "เส้นโครงข่ายถนน": road,
+        // "ขอบเขตจังหวัด": province
     },
     "Small BAseline Subset (SBAS)": {
         "AYA_NBI_SPK_DSC": layers["AYA_NBI_SPK_DSC"],
@@ -321,10 +346,10 @@ var groupedOverlays = {
         // "TAK_DSC": TAK_DSC
     },
     "Persistent Scatterer Interferometry (PSI)": {
-        "PS_CHIANGMAI_ASC": layers["PS_CHIANGMAI_ASC"],
-        "PS_CHIANGMAI_DSC": layers["PS_CHIANGMAI_DSC"],
-        "PS_PATTAYA_ASC": layers["PS_PATTAYA_ASC"],
-        "PS_TAK_ASC": layers["PS_TAK_ASC"]
+        "PS_CMI_CRI_LPG_LPN_MSN_NAN_PRE_<br>PYO_ASC": layers["PS_CHIANGMAI_ASC"],
+        "PS_CMI_CRI_LPG_LPN_MSN_NAN_PRE_<br>PYO_DSC": layers["PS_CHIANGMAI_DSC"],
+        "PS_CBI_RYG_ASC": layers["PS_PATTAYA_ASC"],
+        "PS_LEI_LPG_NAN_PLK_PRE_STI_UTD_ASC": layers["PS_TAK_ASC"]
     }
 }
 
